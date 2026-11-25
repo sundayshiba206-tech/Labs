@@ -1,0 +1,43 @@
+//Ismaila Navali Sani
+//EDU/LIS/24/O03
+//Library and Information Science
+//TASK 6.5
+
+/*
+ * A simple class to represent a student, with a static counter.
+ */
+
+public class CountingStudent {
+    private String name;
+    private int    score;
+
+    private static int objectCount = 0;   // belongs to the CLASS, shared by all instances
+
+    public CountingStudent(String name, int score) {
+        this.name  = name;
+        this.score = score;
+        objectCount++;                     // every construction bumps the shared counter
+    }
+
+    public static int getObjectCount() { return objectCount; }
+
+    public String getName()  { return name; }
+    public int    getScore() { return score; }
+
+    @Override
+    public String toString() {
+        return "Student{name='" + name + "', score=" + score + "}";
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Before: " + CountingStudent.getObjectCount());
+
+        new CountingStudent("Alice", 78);
+        new CountingStudent("Brian", 65);
+        new CountingStudent("Chloe", 91);
+        new CountingStudent("David", 52);
+        new CountingStudent("Eve",   83);
+
+        System.out.println("After:  " + CountingStudent.getObjectCount());
+    }
+}
